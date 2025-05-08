@@ -2385,5 +2385,19 @@
     <button id="scrollToBottom" class="scroll-button" onclick="scrollToBottom()">
         &#x2193;
     </button>
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const celdas = document.querySelectorAll("td.total");
+    let suma = 0;
+    celdas.forEach(td => {
+      const val = parseFloat(td.textContent);
+      if (!isNaN(val)) suma += val;
+    });
+
+    // Enviar suma al HTML que contiene el iframe
+    window.parent.postMessage({ tipo: "sumaTotal", suma }, "*");
+  });
+</script>
+
 </body>
 </html>
